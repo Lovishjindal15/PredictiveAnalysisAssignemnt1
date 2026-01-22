@@ -1,59 +1,115 @@
-# PredictiveAnalysisAssignemnt1
+# Predictive Analysis Assignment 1
 
-Learning Probability Density Function using MLE
+ Learning Probability Density Function using Maximum Likelihood Estimation (MLE)
+
+
+
  Introduction
-In this assignment, the objective is to estimate the probability density function (PDF) of real-world environmental data using Maximum Likelihood Estimation (MLE).
-The given dataset contains NO₂ concentration values, which are first cleaned and transformed, and then modeled using a Gaussian distribution.
-All implementation and analysis are performed using Google Colab.
 
-Dataset Description
-The dataset file data.csv contains multiple air quality attributes.
-For this assignment, only the NO₂ (no2) column is used.
-Preprocessing steps:
-Missing values were removed
-Non-numeric entries were discarded
-Only positive NO₂ values were retained for analysis
-After preprocessing, the data becomes suitable for statistical modeling.
+This assignment focuses on estimating the Probability Density Function (PDF) of real-world environmental data using **Maximum Likelihood Estimation (MLE)**. The dataset consists of nitrogen dioxide (NO₂) concentration values collected from air quality measurements. After appropriate preprocessing, the data is transformed and modeled using a **Gaussian (Normal) distribution**.
 
-Methodology
-1. Roll Number Based Parameters
-To ensure that every student gets a unique result, two parameters are derived from the roll number:
-ar = 0.05 × (roll number mod 7)
-br = 0.3 × (roll number mod 5 + 1)
-These parameters control the transformation applied to the data.
+All data preprocessing, transformation, modeling, and analysis are performed using **Google Colab**.
 
+---
 
-2. Data Transformation
-The original NO₂ values are denoted as x.
-A non-linear transformation is applied to generate a new variable z:
-          z=x+asin(bx)
-This step slightly modifies the data while maintaining its overall distribution structure.
+ Dataset Description
+
+* **File name:** `data.csv`
+* **Selected attribute:** `no2` (Nitrogen Dioxide concentration)
+
+ Preprocessing Steps
+
+The following cleaning steps are applied to make the data suitable for statistical analysis:
+
+1. Missing values are removed
+2. Non-numeric entries are discarded
+3. Only positive NO₂ values are retained
+
+After preprocessing, the cleaned NO₂ data is used for further transformation and modeling.
 
 
-3. Assumed Probability Model
-The transformed data is assumed to follow a Gaussian (Normal) distribution.
-The probability density function is written as:
 
-        
+ Methodology
+
+ 1. Roll Number Based Parameters
+
+To ensure uniqueness of results for each student, two parameters are derived from the roll number:
+
+* **aᵣ = 0.05 × (roll number mod 7)**
+* **bᵣ = 0.3 × (roll number mod 5 + 1)**
+
+These parameters control the non-linear transformation applied to the dataset.
+
+---
+
+ 2. Data Transformation
+
+Let the original NO₂ values be represented by **x**. A non-linear transformation is applied to obtain a new variable **z**:
+
+**z = x + aᵣ · sin(bᵣ · x)**
+
+This transformation slightly alters the original values while preserving the overall structure of the distribution, ensuring variability across different roll numbers.
+
+
+
+ 3. Assumed Probability Model
+
+The transformed data **z** is assumed to follow a **Gaussian (Normal) distribution**. The probability density function (PDF) is defined as:
+
+**f(z | μ, λ) = c · exp(−λ (z − μ)²)**
 
 Where:
-μ represents the mean of the distribution
-λ controls the spread of the curve
-c is a normalization constant
+
+* **μ** is the mean of the distribution
+* **λ** controls the spread (precision) of the distribution
+* **c** is the normalization constant
 
 
-4. Parameter Estimation using MLE
-Maximum Likelihood Estimation is used to learn the unknown parameters of the PDF.
-The mean (μ) is calculated as the average of transformed data
-The variance (σ²) is computed from the data
-λ is calculated using 
 
-​	
- 
-c is computed as 
+ 4. Parameter Estimation Using MLE
 
-​	
- 
-​	
- 
-These values represent the best-fit parameters for the given data.
+Maximum Likelihood Estimation (MLE) is used to estimate the unknown parameters of the Gaussian PDF.
+
+* **Mean (μ):**
+
+  μ = (1/N) Σ zᵢ
+
+* **Variance (σ²):**
+
+  σ² = (1/N) Σ (zᵢ − μ)²
+
+* **Lambda (λ):**
+
+  λ = 1 / (2σ²)
+
+* **Normalization Constant (c):**
+
+  c = √(λ / π)
+
+These estimated values represent the best-fit parameters for the transformed NO₂ data under the Gaussian assumption.
+
+
+
+ Tools and Libraries Used
+
+* Google Colab
+* Python
+* NumPy
+* Pandas
+* Matplotlib / Seaborn (for visualization)
+
+
+
+ Conclusion
+
+This assignment demonstrates how Maximum Likelihood Estimation can be applied to real-world environmental data for probabilistic modeling. By transforming the data using roll-number-based parameters and fitting a Gaussian distribution, unique and statistically meaningful results are obtained for each student.
+
+
+
+ Author
+
+**Name:** Lovish
+**Course:** Predictive Analysis
+**Assignment:** 1
+**Rollno**102303950
+
